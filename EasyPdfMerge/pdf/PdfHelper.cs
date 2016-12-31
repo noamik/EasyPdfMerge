@@ -81,10 +81,15 @@ namespace EasyPdfMerge.pdf
                 Console.Out.Write("File: " + nextFile + " filename: " + baseFileName + "\r\n");
 
                 PdfDocument outputDocument = createMultiPageDoc(nextFile, orientation);
+                MemoryStream tempStream = new MemoryStream();
+                outputDocument.Save(tempStream, false);
+                PdfDocument inputDocument = PdfReader.Open(tempStream, PdfDocumentOpenMode.Import);
 
                 //outputDocument.Save(outputFile);
-                tempFiles[i] = new PdfDoc(outputFile, outputDocument); // outputFile;
+                tempFiles[i] = new PdfDoc(outputFile, inputDocument); // outputFile;
                 i++;
+                tempStream.Close();
+                outputDocument.Close();
                 //Process.Start(outputFile);
             }
             return tempFiles;
