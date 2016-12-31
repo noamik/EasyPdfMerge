@@ -34,6 +34,7 @@ namespace EasyPdfMerge
             //myVar.testPdf();
             //myVar.mergePdfPortrait();
             var files = new String[filesListBox.Items.Count];
+            PdfDoc[] pdfDocs;
             int i = 0;
             foreach (var file in filesListBox.Items)
             {
@@ -41,10 +42,13 @@ namespace EasyPdfMerge
                 i++;
             }
             if (comboBoxMergeModes.SelectedIndex == 1) {
-                files = myVar.prepareMultiPageDocs(files, PdfSharp.PageOrientation.Landscape);
+                pdfDocs = myVar.prepareMultiPageDocs(files, PdfSharp.PageOrientation.Landscape);
             } else if (comboBoxMergeModes.SelectedIndex == 2) {
-                files = myVar.prepareMultiPageDocs(files, PdfSharp.PageOrientation.Portrait);
+                pdfDocs = myVar.prepareMultiPageDocs(files, PdfSharp.PageOrientation.Portrait);
+            } else {
+                pdfDocs = myVar.readPdfDocs(files);
             }
+            myVar.saveDocument(myVar.concatenatePdfs(pdfDocs), "output.pdf");
 
         }
 

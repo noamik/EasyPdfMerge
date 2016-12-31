@@ -34,22 +34,58 @@ namespace EasyPdfMerge.pdf
             
         }
 
-        public String[] prepareMultiPageDocs(String[] files, PageOrientation orientation)
+        public void saveDocument(PdfDocument doc, string file) {
+            doc.Save(file);
+            Process.Start(file);
+        }
+
+        public PdfDocument concatenatePdfs(PdfDoc[] docs) {
+            PdfDocument outputDocument = new PdfDocument();
+            foreach (PdfDoc doc in docs) {
+                // Iterate pages
+                int count = doc.doc.PageCount;
+                for (int idx = 0; idx < count; idx++) {
+                    // Get the page from the external document...
+                    PdfPage page = doc.doc.Pages[idx];
+                    // ...and add it to the output document.
+                    outputDocument.AddPage(page);
+                }
+            }
+            return outputDocument;
+        }
+
+        public PdfDoc[] readPdfDocs(String[] files) {
+            PdfDoc[] tempFiles = new PdfDoc[files.Count()];
+            int i = 0;
+            string baseFileName;
+            string outputFile;
+            foreach (var nextFile in files) {
+                baseFileName = System.IO.Path.GetFileName(nextFile);
+                outputFile = Path.Combine(getTemporaryOutputDirectory(), baseFileName);
+                PdfDocument doc = PdfReader.Open(nextFile, PdfDocumentOpenMode.Import);
+                tempFiles[i] = new PdfDoc(outputFile, doc);
+                i++;
+            }
+            return tempFiles;
+        }
+
+        public PdfDoc[] prepareMultiPageDocs(String[] files, PageOrientation orientation)
         {
-            String[] tempFiles = new String[files.Count()];
+            PdfDoc[] tempFiles = new PdfDoc[files.Count()];
             string baseFileName;
             string outputFile;
             int i = 0;
-            foreach (var nextFile in files)
-            {
+            foreach (var nextFile in files) {
                 baseFileName = System.IO.Path.GetFileName(nextFile);
                 outputFile   = Path.Combine(getTemporaryOutputDirectory(), baseFileName);
                 Console.Out.Write("File: " + nextFile + " filename: " + baseFileName + "\r\n");
+
                 PdfDocument outputDocument = createMultiPageDoc(nextFile, orientation);
-                outputDocument.Save(outputFile);
-                tempFiles[i] = outputFile;
+
+                //outputDocument.Save(outputFile);
+                tempFiles[i] = new PdfDoc(outputFile, outputDocument); // outputFile;
                 i++;
-                Process.Start(outputFile);
+                //Process.Start(outputFile);
             }
             return tempFiles;
         }
