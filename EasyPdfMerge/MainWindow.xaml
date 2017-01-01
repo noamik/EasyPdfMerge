@@ -7,14 +7,23 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button x:Name="mergeButton" Content="Merge" HorizontalAlignment="Left" Margin="417,269,0,0" VerticalAlignment="Top" Width="90" Click="button_Click"/>
-        <Button x:Name="addPdfButton" Content="Add PDFs" HorizontalAlignment="Left" Margin="10,269,0,0" VerticalAlignment="Top" Width="75" Click="button1_Click"/>
+        <Button x:Name="mergeButton" Content="Merge" HorizontalAlignment="Left" Margin="417,288,0,0" VerticalAlignment="Top" Width="90" Click="mergeButton_Click" IsEnabled="False"/>
+        <Button x:Name="addPdfButton" Content="Add PDFs" HorizontalAlignment="Left" Margin="10,288,0,0" VerticalAlignment="Top" Width="75" Click="addFilesButton_Click"/>
         <ListBox x:Name="filesListBox" HorizontalAlignment="Left" Height="237" Margin="10,10,0,0" VerticalAlignment="Top" Width="497"/>
-        <ComboBox x:Name="comboBoxMergeModes" HorizontalAlignment="Left" Margin="281,267,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
-            <ComboBoxItem Content="Plain" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="2on1 Horizontally" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="2on1 Portrait" HorizontalAlignment="Left" Width="118"/>
+        <ComboBox x:Name="comboBoxOrientation" HorizontalAlignment="Left" Margin="282,287,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="1" DropDownClosed="onComboBoxOrientation_Closed">
+            <ComboBoxItem Content="Landscape" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Portrait" HorizontalAlignment="Left" Width="118"/>
         </ComboBox>
+        <Label x:Name="orientationLabel" Content="Page orientation:" HorizontalAlignment="Right" Margin="0,261,135,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="comboBoxPagesOnPage" HorizontalAlignment="Left" Margin="153,287,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0" DropDownClosed="onComboBoxPagesOnPage_Closed">
+            <ComboBoxItem Content="1" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="2" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="4" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="8" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="16" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+        <Label x:Name="numPagesLabel" Content="Pages on one page:" HorizontalAlignment="Right" Margin="0,261,250,0" VerticalAlignment="Top"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="438,261,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
 
     </Grid>
 </Window>

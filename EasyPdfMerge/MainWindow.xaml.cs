@@ -28,7 +28,7 @@ namespace EasyPdfMerge
             InitializeComponent();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void mergeButton_Click(object sender, RoutedEventArgs e)
         {
             var myVar = PdfHelper.getInstance();
             //myVar.testPdf();
@@ -41,9 +41,9 @@ namespace EasyPdfMerge
                 files[i] = (String)file;
                 i++;
             }
-            if (comboBoxMergeModes.SelectedIndex == 1) {
+            if (comboBoxOrientation.SelectedIndex == 1) {
                 pdfDocs = myVar.prepareMultiPageDocs(files, PdfSharp.PageOrientation.Landscape);
-            } else if (comboBoxMergeModes.SelectedIndex == 2) {
+            } else if (comboBoxOrientation.SelectedIndex == 2) {
                 pdfDocs = myVar.prepareMultiPageDocs(files, PdfSharp.PageOrientation.Portrait);
             } else {
                 pdfDocs = myVar.readPdfDocs(files);
@@ -52,7 +52,7 @@ namespace EasyPdfMerge
 
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void addFilesButton_Click(object sender, RoutedEventArgs e)
         {
             //var myVar = new PdfHelper();
             //myVar.testPdf();
@@ -67,8 +67,26 @@ namespace EasyPdfMerge
                 foreach (string filename in openFileDialog.FileNames)
                     filesListBox.Items.Add(filename);
             }
-            
+            if (filesListBox.Items.Count > 0) {
+                mergeButton.IsEnabled = true;
+            }
         }
 
+        private void onComboBoxPagesOnPage_Closed(object sender, EventArgs e) {
+            PdfConfiguration.getInstance().pageBisections = comboBoxPagesOnPage.SelectedIndex;
+        }
+
+        private void onComboBoxOrientation_Closed(object sender, EventArgs e) {
+            if (comboBoxOrientation.SelectedIndex == 0) {
+                PdfConfiguration.getInstance().orientation = PdfSharp.PageOrientation.Landscape;
+            } else {
+                PdfConfiguration.getInstance().orientation = PdfSharp.PageOrientation.Portrait;
+            }
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e) {
+            PdfMerger merger = new PdfMerger();
+            merger.BoxCalculator();
+        }
     }
 }
