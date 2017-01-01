@@ -24,21 +24,23 @@ box = new XRect(1 * page.Width / 2, 0 * page.Height / 2, page.Width / 2, page.He
 box = new XRect(1 * page.Width / 2, 1 * page.Height / 2, page.Width / 2, page.Height / 2);
 rotate = 0
 
+
 2^3 -> 8
 =========
 | | | | |
 ---------
 | | | | |
 =========
-box = new XRect(0 * page.Width / 2, 0 * (page.Height / 4), page.Width / 4, page.Height / 2);
-box = new XRect(0 * page.Width / 2, 1 * (page.Height / 4), page.Width / 4, page.Height / 2);
-box = new XRect(1 * page.Width / 2, 0 * (page.Height / 4), page.Width / 4, page.Height / 2);
-box = new XRect(1 * page.Width / 2, 1 * (page.Height / 4), page.Width / 4, page.Height / 2);
-box = new XRect(2 * page.Width / 2, 0 * (page.Height / 4), page.Width / 4, page.Height / 2);
-box = new XRect(2 * page.Width / 2, 1 * (page.Height / 4), page.Width / 4, page.Height / 2);
-box = new XRect(3 * page.Width / 2, 0 * (page.Height / 4), page.Width / 4, page.Height / 2);
-box = new XRect(3 * page.Width / 2, 1 * (page.Height / 4), page.Width / 4, page.Height / 2);
+box = new XRect(0 * page.Width / 4, 0 * (page.Height / 2), page.Width / 4, page.Height / 2);
+box = new XRect(0 * page.Width / 4, 1 * (page.Height / 2), page.Width / 4, page.Height / 2);
+box = new XRect(1 * page.Width / 4, 0 * (page.Height / 2), page.Width / 4, page.Height / 2);
+box = new XRect(1 * page.Width / 4, 1 * (page.Height / 2), page.Width / 4, page.Height / 2);
+box = new XRect(2 * page.Width / 4, 0 * (page.Height / 2), page.Width / 4, page.Height / 2);
+box = new XRect(2 * page.Width / 4, 1 * (page.Height / 2), page.Width / 4, page.Height / 2);
+box = new XRect(3 * page.Width / 4, 0 * (page.Height / 2), page.Width / 4, page.Height / 2);
+box = new XRect(3 * page.Width / 4, 1 * (page.Height / 2), page.Width / 4, page.Height / 2);
 rotate = 1
+
 
 2^4 -> 16
 
