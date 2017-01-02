@@ -30,25 +30,40 @@ namespace EasyPdfMerge
 
         private void mergeButton_Click(object sender, RoutedEventArgs e)
         {
-            var myVar = PdfHelper.getInstance();
-            //myVar.testPdf();
-            //myVar.mergePdfPortrait();
-            var files = new String[filesListBox.Items.Count];
-            PdfDoc[] pdfDocs;
+            //var myVar = PdfHelper.getInstance();
+            ////myVar.testPdf();
+            ////myVar.mergePdfPortrait();
+            //var files = new String[filesListBox.Items.Count];
+            //PdfDoc[] pdfDocs;
+            //int i = 0;
+            //foreach (var file in filesListBox.Items)
+            //{
+            //    files[i] = (String)file;
+            //    i++;
+            //}
+            //if (comboBoxOrientation.SelectedIndex == 1) {
+            //    pdfDocs = myVar.prepareMultiPageDocs(files, PdfSharp.PageOrientation.Landscape);
+            //} else if (comboBoxOrientation.SelectedIndex == 2) {
+            //    pdfDocs = myVar.prepareMultiPageDocs(files, PdfSharp.PageOrientation.Portrait);
+            //} else {
+            //    pdfDocs = myVar.readPdfDocs(files);
+            //}
+            //myVar.saveDocument(myVar.concatenatePdfs(pdfDocs), "output.pdf");
+            PdfConfiguration config = new PdfConfiguration();
+            if (comboBoxOrientation.SelectedIndex == 0) {
+                config.orientation = PdfSharp.PageOrientation.Landscape;
+            } else {
+                config.orientation = PdfSharp.PageOrientation.Portrait;
+            }
+            config.pageBisections = comboBoxPagesOnPage.SelectedIndex;
+            string[] files = new string[filesListBox.Items.Count];
             int i = 0;
-            foreach (var file in filesListBox.Items)
-            {
+            foreach (var file in filesListBox.Items) {
                 files[i] = (String)file;
                 i++;
             }
-            if (comboBoxOrientation.SelectedIndex == 1) {
-                pdfDocs = myVar.prepareMultiPageDocs(files, PdfSharp.PageOrientation.Landscape);
-            } else if (comboBoxOrientation.SelectedIndex == 2) {
-                pdfDocs = myVar.prepareMultiPageDocs(files, PdfSharp.PageOrientation.Portrait);
-            } else {
-                pdfDocs = myVar.readPdfDocs(files);
-            }
-            myVar.saveDocument(myVar.concatenatePdfs(pdfDocs), "output.pdf");
+            PdfMerger merger = new PdfMerger();
+            merger.MergePdfs(files, config);
 
         }
 
@@ -72,21 +87,36 @@ namespace EasyPdfMerge
             }
         }
 
+        private PdfConfiguration config = new PdfConfiguration();
+
         private void onComboBoxPagesOnPage_Closed(object sender, EventArgs e) {
-            PdfConfiguration.getInstance().pageBisections = comboBoxPagesOnPage.SelectedIndex;
+            config.pageBisections = comboBoxPagesOnPage.SelectedIndex;
         }
 
         private void onComboBoxOrientation_Closed(object sender, EventArgs e) {
             if (comboBoxOrientation.SelectedIndex == 0) {
-                PdfConfiguration.getInstance().orientation = PdfSharp.PageOrientation.Landscape;
+                config.orientation = PdfSharp.PageOrientation.Landscape;
             } else {
-                PdfConfiguration.getInstance().orientation = PdfSharp.PageOrientation.Portrait;
+                config.orientation = PdfSharp.PageOrientation.Portrait;
             }
         }
 
         private void button_Click(object sender, RoutedEventArgs e) {
+            PdfConfiguration config = new PdfConfiguration();
+            if (comboBoxOrientation.SelectedIndex == 0) {
+                config.orientation = PdfSharp.PageOrientation.Landscape;
+            } else {
+                config.orientation = PdfSharp.PageOrientation.Portrait;
+            }
+            config.pageBisections = comboBoxPagesOnPage.SelectedIndex;
+            string[] files = new string[filesListBox.Items.Count];
+            int i = 0;
+            foreach (var file in filesListBox.Items) {
+                files[i] = (String)file;
+                i++;
+            }
             PdfMerger merger = new PdfMerger();
-            merger.BoxCalculator();
+            merger.MergePdfs(files, config);
         }
     }
 }
