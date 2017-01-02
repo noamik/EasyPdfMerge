@@ -9,15 +9,15 @@ using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 
-namespace EasyPdfMerge.pdf {
-    class PdfMerger {
+namespace EasyPdfMerge.Pdf {
+    class PdfSharpPdfMerger {
 
         private PdfSharp.Drawing.XGraphics gfx;
         private PageConfiguration pageConfiguration;
         private PdfConfiguration outputConfiguration;
         private PdfDocument outputDocument;
 
-        public PdfMerger() {
+        public PdfSharpPdfMerger() {
             outputDocument = new PdfDocument();
             //XPdfForm form = getNewFormFromFile(tempFile);
 
@@ -82,7 +82,19 @@ namespace EasyPdfMerge.pdf {
                     break;
                 }
                 doc.doc.PageNumber = firstPage + i;
+                AutoRotatePage(config, doc);
                 gfx.DrawImage(doc.doc, config.BoxConfigurations[i]);
+            }
+        }
+
+        private void AutoRotatePage(PageConfiguration config, PdfDoc doc) {
+            if (config.Rotate) {
+                doc.doc.Page.Rotate = doc.doc.Page.Rotate + 90;
+                if (outputConfiguration.orientation == PageOrientation.Landscape) {
+                    doc.doc.Page.Orientation = PageOrientation.Portrait;
+                } else {
+                    doc.doc.Page.Orientation = PageOrientation.Landscape;
+                }
             }
         }
 
@@ -102,7 +114,7 @@ namespace EasyPdfMerge.pdf {
             int boxCounter           = 0;
             for (int i = 0; i < horizontalBisections; i++) {
                 for (int j = 0; j < verticalBisections; j++) {
-                    Console.WriteLine("box = new XRect(" + j + " * (page.Width / " + verticalBisections + "), " + i  + "* (page.Height / " + horizontalBisections + "), page.Width / " + verticalBisections + ", page.Height / " + horizontalBisections + ");");
+                    Console.WriteLine("box = new XRect(" + j + " * (page.Width / " + verticalBisections + "), " + i  + " * (page.Height / " + horizontalBisections + "), page.Width / " + verticalBisections + ", page.Height / " + horizontalBisections + ");");
                     configuration.BoxConfigurations[boxCounter] = new XRect(j * (page.Width / verticalBisections), i  * (page.Height / horizontalBisections), page.Width / verticalBisections, page.Height / horizontalBisections);
                     boxCounter++;
                 }

@@ -8,7 +8,7 @@ using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 
-namespace EasyPdfMerge.pdf {
+namespace EasyPdfMerge.Pdf {
     class PageConfiguration {
 
         public XRect[] BoxConfigurations { get; set; }

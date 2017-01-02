@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PdfSharp;
 
-namespace EasyPdfMerge.pdf {
+namespace EasyPdfMerge.Pdf {
     class PdfConfiguration {
 
         public string file { get; set; }

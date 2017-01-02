@@ -12,9 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using EasyPdfMerge.pdf;
 using Microsoft.Win32;
-
+using EasyPdfMerge.Pdf;
 
 namespace EasyPdfMerge
 {
@@ -62,7 +61,7 @@ namespace EasyPdfMerge
                 files[i] = (String)file;
                 i++;
             }
-            PdfMerger merger = new PdfMerger();
+            PdfSharpPdfMerger merger = new PdfSharpPdfMerger();
             merger.MergePdfs(files, config);
 
         }
@@ -115,7 +114,7 @@ namespace EasyPdfMerge
                 files[i] = (String)file;
                 i++;
             }
-            PdfMerger merger = new PdfMerger();
+            PdfSharpPdfMerger merger = new PdfSharpPdfMerger();
             merger.MergePdfs(files, config);
         }
     }

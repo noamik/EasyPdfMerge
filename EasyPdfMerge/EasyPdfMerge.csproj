@@ -102,11 +102,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pdf\PageConfiguration.cs" />
-    <Compile Include="pdf\PdfConfiguration.cs" />
-    <Compile Include="pdf\PdfDoc.cs" />
-    <Compile Include="pdf\PdfHelper.cs" />
-    <Compile Include="pdf\PdfMerger.cs" />
+    <Compile Include="Pdfsharp\PageConfiguration.cs" />
+    <Compile Include="Pdfsharp\PdfConfiguration.cs" />
+    <Compile Include="Pdfsharp\PdfDoc.cs" />
+    <Compile Include="Pdfsharp\PdfHelper.cs" />
+    <Compile Include="Pdfsharp\PdfMerger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -147,6 +147,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

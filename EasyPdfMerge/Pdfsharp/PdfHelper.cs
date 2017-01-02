@@ -10,8 +10,7 @@ using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 
-namespace EasyPdfMerge.pdf
-{
+namespace EasyPdfMerge.Pdf {
     class PdfHelper
     {
     //    private static PdfHelper instance = new PdfHelper();
