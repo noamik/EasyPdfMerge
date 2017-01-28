@@ -17,8 +17,11 @@ namespace EasyPdfMerge.iText {
                 Console.WriteLine("  " + file);
             }
             Console.WriteLine("Configuration:");
-            Console.WriteLine("  Orientation    : " + config.orientation);
-            Console.WriteLine("  Page bisections: " + config.pageBisections);
+            Console.WriteLine("  Orientation          : " + config.orientation);
+            Console.WriteLine("  Page bisections      : " + config.pageBisections);
+            Console.WriteLine("  SubPage count        : " + config.GetSubPageCount());
+            Console.WriteLine("  Horizontal page count: " + config.CalculateHorizontalPageCount());
+            Console.WriteLine("  Vertical page count  : " + config.CalculateVerticalPageCount());
         }
     }
 }
