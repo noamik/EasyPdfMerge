@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PdfSharp;
 
 namespace EasyPdfMerge.Pdf {
     class PdfConfiguration {
@@ -23,5 +22,9 @@ namespace EasyPdfMerge.Pdf {
             orientation = PageOrientation.Portrait;
             file = Path.Combine(Directory.GetCurrentDirectory(), "output.pdf");
         }
+    }
+
+    enum PageOrientation {
+        Landscape, Portrait
     }
 }
